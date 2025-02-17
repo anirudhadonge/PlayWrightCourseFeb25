@@ -64,24 +64,34 @@
  */
 
 
-let month = "Dec";
+// let month = "Dec";
 
-switch(month){
-    case "Jan":
-        console.log('its January');
-        break;
-    case "Feb":
-        console.log('its February');
-        break;
-    case "Apr":
-        console.log('its April');
-        break;
-    case "May":
-        console.log('its May');
-        break;
-    case "Jun":
-        console.log('its Jun');
-        break;
-    default:
-        console.log("Month Name did not match");
+// switch(month){
+//     case "Jan":
+//         console.log('its January');
+//         break;
+//     case "Feb":
+//         console.log('its February');
+//         break;
+//     case "Apr":
+//         console.log('its April');
+//         break;
+//     case "May":
+//         console.log('its May');
+//         break;
+//     case "Jun":
+//         console.log('its Jun');
+//         break;
+//     default:
+//         console.log("Month Name did not match");
+// }
+
+
+let flag = true 
+(f1)?console.log('its true'):console.log('its false')
+
+function display(f1){
+
 }
+
+display(flag)

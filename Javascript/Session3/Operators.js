@@ -74,3 +74,7 @@ while(value<20){
     console.log(value);
     value++;
 }
+
+
+let myNumber = 12345;
+let newNumber = 54321;
