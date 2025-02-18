@@ -39,7 +39,7 @@ function myfun(){
     console.log(var2);
     console.log(var3);
 }
-
+var2 = "New Var"
 console.log(var2);
 
 
