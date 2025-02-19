@@ -27,7 +27,6 @@
 // let concatArray = [...fruits,...subArray]
 // console.log(concatArray.reverse());
 
-
 /// Iterating the array
 /**
  * forEach
@@ -35,8 +34,8 @@
  * map()
  */
 
-let myNumber = [3,6,12,65,100,2]
-
+// let myNumber =[4,56,7,28] //[3,6,12,65,100,2]
+// myNumber.sort();
 // fruits.forEach(function (value){
 // console.log(value);
 // })
@@ -48,9 +47,18 @@ let myNumber = [3,6,12,65,100,2]
 
 // console.log(newArray);
 
-let newArray = myNumber.map((value)=>{
-    return value *2
-})
+// let newArray = myNumber.map((value)=>{
+//     return value *2
+// })
 
-console.log(myNumber)
-console.log(newArray);
+// console.log(myNumber)
+// console.log(newArray);
+
+// const myNewArray = [1,43,6]
+
+// console.log(myNewArray);
+// console.log(myNewArray.reverse().sort(function(a, b){return a - b}));
+// console.log(myNewArray);
+// const months = ["Jan", "Feb", "Mar", "Apr"];
+// const reversed = months.toSorted();
+// console.log(reversed);
