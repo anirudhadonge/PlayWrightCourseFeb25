@@ -37,5 +37,6 @@ let stringWithNumer = 'anirudha-01tutor8';
 // console.log(...['orange','Apple']);
 //  console.log(mySecString.concat(myFirstString,myDate));
 
-console.log(mySecString.replaceAll('a','/'));
+// console.log(mySecString.replaceAll('a','/'));
 
+console.log(stringWithNumer.split(/[0-9]/));
