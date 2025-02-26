@@ -11,10 +11,10 @@
 /// Promises
 /// Async and Await.
 
-function fun1(fun2,fun3){
+function fun1(fun2){
     setTimeout(()=>{
         console.log('Function 1')
-        fun2(fun3);
+        fun2();
     },4000);
 }
 
@@ -33,7 +33,12 @@ function fun3(){
     },1000);
 }
 
-fun1(fun2,fun3);
+fun1(()=>{
+    fun2(()=>{
+        fun3()
+    })
+});
+/// Call Hell
 // fun1();
 // console.log(fun2());
 // console.log("All the functions are triggered.")
