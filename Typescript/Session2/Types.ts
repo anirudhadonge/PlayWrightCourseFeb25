@@ -77,15 +77,18 @@ interface student {
 
 // console.log(add);
 
-let students:student[] =[
-    {
-        name:"Anirudha",
-        marks:70
-    },
-    {
-        name:"Akshay",
-        marks:80 
-    }
-]
+// let students:student[] =[
+//     {
+//         name:"Anirudha",
+//         marks:70
+//     },
+//     {
+//         name:"Akshay",
+//         marks:80 
+//     }
+// ]
 
-console.log(students);
+// console.log(students);
+
+// function
+// let var1:string[]

@@ -18,7 +18,7 @@ DataTypes
 // const val2:number = 5
 // //val1=5;
 
-let val3:any;
+// let val3:any;
 
-val3 = 'Anirudha'
-val3= 5
+// val3 = 'Anirudha'
+// val3= 5
