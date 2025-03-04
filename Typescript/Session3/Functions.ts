@@ -68,6 +68,6 @@ function add<Type>(val1:Type,val2:Type):Type{
     return val1+val2;
 }
 
-// console.log(add<string>("Anirudha","Tutor"));
+console.log(typeof(add<number>(5,4)));
 // console.log(add<number>(2,3));
- add('Anirudha',3);
+//  add('Anirudha',3);
