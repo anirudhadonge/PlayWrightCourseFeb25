@@ -21,6 +21,10 @@ this.a =a
 // Encapsulation
 // Inhertance
 // Polymorphism
+
+/// Implementing Interface
+/// extending classes
+/// Abstract classes and Abstract method.
 class students{
     name:string
     rollNumber:number
