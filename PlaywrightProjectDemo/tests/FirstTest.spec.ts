@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { BasePageModel } from "../PageModel/BasePageModel";
 /**
  * 		○ Checkboxes and radio buttons
 		○ Upload files
@@ -53,7 +54,7 @@ test("Select Options test", async ({ page }) => {
  */
 
 //WebElement element = driver.findElement(By.Css(""))
-test.only('Checkbox test', async({page})=>{
+test('Checkbox test', async({page})=>{
         await page.goto("https://the-internet.herokuapp.com");
         await page.getByText('Checkboxes').click();
         //await page.locator("[href='/checkboxes']").click();
@@ -69,7 +70,7 @@ test.only('Checkbox test', async({page})=>{
         await page.getByText(' checkbox 2').uncheck();
 })
 
-test.only('File Upload test',async({page})=>{
+test('File Upload test',async({page})=>{
         await page.goto("https://the-internet.herokuapp.com");
         await page.locator("[href='/upload']").click();
         // await page.locator("#file-upload").setInputFiles(["C:/UploadFiles/downloadFile.txt",'C:/UploadFiles/Uploadfile.txt']);
@@ -83,7 +84,7 @@ test.only('File Upload test',async({page})=>{
         await page.locator("#file-submit").click();
 })
 
-test.only('Working with Iframes ',async({page})=>{
+test('Working with Iframes ',async({page})=>{
         await page.goto("https://the-internet.herokuapp.com/");
         await page.locator("[href='/frames']").click();
         await page.locator("[href='/iframe']").click();
@@ -92,7 +93,7 @@ test.only('Working with Iframes ',async({page})=>{
         await expect(page.locator(".example h3")).toHaveText('An iFrame containing the TinyMCE WYSIWYG Editor');
 })
 
-test.only("Working Multiple Frames", async ({ page }) => {
+test("Working Multiple Frames", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/");
   await page.locator("[href='/frames']").click();
   await page.locator("[href='/nested_frames']").click();
@@ -103,7 +104,7 @@ test.only("Working Multiple Frames", async ({ page }) => {
   await expect(midFrame.locator('#content')).toHaveText('MIDDLE')
 });
 
-test.only("Working with Download files ", async ({ page }) => {
+test("Working with Download files ", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/");
   await page.locator("[href='/download']").click();
   const downloadEvent = page.waitForEvent("download");
@@ -111,3 +112,50 @@ test.only("Working with Download files ", async ({ page }) => {
   const downloadFile = await downloadEvent;
   await downloadFile.saveAs("./Downloads/" + downloadFile.suggestedFilename());
 });
+
+test('Working with Alerts with BasePageModel',async({page})=>{
+    await page.goto("https://the-internet.herokuapp.com/");
+    await page.locator("[href='/javascript_alerts']").click();
+    const basePageModel = new BasePageModel(page);
+    await basePageModel.handleAlert('[onclick="jsAlert()"]','',true);
+    await basePageModel.validatePartialText('#result','You successfully clicked an alert');
+    //await page.locator('[onclick="jsAlert()"]').click();
+    //await page.locator('[onclick="jsConfirm()"]').click();
+    //await page.locator('[onclick="jsPrompt()"]').click();
+    //await expect(page.locator('#result')).toHaveText('You successfully clicked an alert');
+    //await expect(page.locator('#result')).toHaveText('You clicked: Cancel');
+    //await expect(page.locator('#result')).toHaveText('You clicked: Ok');
+    //await expect(page.locator('#result')).toContainText('this is a demo');
+});
+
+
+// test('Working with Alerts',async({page})=>{
+//   await page.goto("https://the-internet.herokuapp.com/");
+//   await page.locator("[href='/javascript_alerts']").click();
+//   page.on('dialog',(dialog)=>{
+//     console.log(dialog.message());
+//     //dialog.accept();
+//     dialog.accept('this is a demo');
+//   })
+//   //await page.locator('[onclick="jsAlert()"]').click();
+//   //await page.locator('[onclick="jsConfirm()"]').click();
+//   await page.locator('[onclick="jsPrompt()"]').click();
+//   //await expect(page.locator('#result')).toHaveText('You successfully clicked an alert');
+//   //await expect(page.locator('#result')).toHaveText('You clicked: Cancel');
+//   //await expect(page.locator('#result')).toHaveText('You clicked: Ok');
+//   await expect(page.locator('#result')).toContainText('this is a demo');
+// });
+
+
+
+
+test.only("Working Hover feature",async({page})=>{
+  await page.goto("https://the-internet.herokuapp.com/");
+  await page.locator('[href="/hovers"]').click();
+  //await page.locator("div.figure").nth(0).hover();
+  await page.hover("div.figure");
+  //await page.locator("div.figure").nth(0).focus();
+
+ 
+  await expect(page.locator('h5').nth(0)).toHaveText('name: user1');
+})
