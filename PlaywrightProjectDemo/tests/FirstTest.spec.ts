@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { BasePageModel } from "../PageModel/BasePageModel";
+import { Homepage } from "../PageModel/HomePage";
 /**
  * 		○ Checkboxes and radio buttons
 		○ Upload files
@@ -149,13 +150,50 @@ test('Working with Alerts with BasePageModel',async({page})=>{
 
 
 
-test.only("Working Hover feature",async({page})=>{
-  await page.goto("https://the-internet.herokuapp.com/");
-  await page.locator('[href="/hovers"]').click();
-  //await page.locator("div.figure").nth(0).hover();
-  await page.hover("div.figure");
-  //await page.locator("div.figure").nth(0).focus();
+// test.only("Working Hover feature",async({page})=>{
+//   await page.goto("https://the-internet.herokuapp.com/");
+//   await page.locator('[href="/hovers"]').click();
+//   //await page.locator("div.figure").nth(0).hover();
+//   await page.hover("div.figure");
+//   //await page.locator("div.figure").nth(0).focus();
 
  
-  await expect(page.locator('h5').nth(0)).toHaveText('name: user1');
+//   await expect(page.locator('h5').nth(0)).toHaveText('name: user1');
+// })
+/// Browser ---> BrowserContext()---> page
+/// brower
+///selenium: Window Handle --- we were switching between window handle.
+/// driver.getWindowHandle()
+test('Working with multiple tabs',async({page,context})=>{
+  const homePage = new Homepage(page);
+  await homePage.gotoUrl();
+  await homePage.clickOnNewWindowLink();
+  const newPage = await homePage.clickWithNewWindow(context,"[href='/windows/new']");
+  // const newPageEvent = context.waitForEvent('page'); 
+  // await page.locator("[href='/windows/new']").click();
+  // const newpage = await newPageEvent;
+  await expect(newPage.locator('h3')).toHaveText('New Window');
+  await expect(page.locator('h3')).toHaveText('Opening a new window');
+})
+
+test('Working with Base Auth window',async({browser})=>{
+  const context = await browser.newContext({
+    httpCredentials:{
+      username:"admin",
+      password:"admin"
+    }
+  })
+  const page = await context.newPage();
+  const homePage = new Homepage(page);
+  await homePage.gotoUrl();
+  await homePage.clickOnBaseAuthLink();
+  await expect(page.locator(".example p")).toContainText("Congratulations! You must have the proper credentials.")
+})
+
+test.only('Drag and Drop',async({page})=>{
+  const homePage = new Homepage(page);
+  await homePage.gotoUrl();
+  await homePage.clickOnElement("[href='/drag_and_drop']");
+  await page.locator("#column-a").dragTo(page.locator("#column-b"));
+  
 })
