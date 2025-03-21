@@ -19,6 +19,19 @@ import { Homepage } from "../PageModel/HomePage";
  * Page
  */
 //Browser---> Brwoser Context---> page
+/**
+ * Locators
+ * page.locator(xpath,css);
+ * 		○ Locate by role
+			○ Locate by label
+			○ Locate by placeholder
+			○ Locate by text
+			○ Locate by alt text
+			○ Locate by title
+      Locate by TestId
+Locate by test id
+ */
+
 test("this is my first test", async ({ page }) => {
   await page.goto("https://playwright.dev/");
   await page.locator(".getStarted_Sjon").click();
@@ -35,10 +48,13 @@ test("Locator Description test", async ({ page }) => {
 
 test("Fill and Press-Sequentially test", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/login");
+  await expect(page.getByLabel('Username')).toBeVisible(); // Label tag in the Html page
   await page
     .locator("#username")
-    .pressSequentially("tomsmith", { delay: 1000 });
+    .pressSequentially("tomsmith", { delay: 300 });
+
   await page.locator("#password").fill("SuperSecretPassword!");
+  await page.getByRole('button').click();
 });
 
 test("Select Options test", async ({ page }) => {
@@ -67,8 +83,10 @@ test('Checkbox test', async({page})=>{
         // }
         // await page.locator("#checkboxes input").nth(0).uncheck();
         // await page.locator("#checkboxes input").nth(1).uncheck();
-        await page.getByText(' checkbox 1').check();
-        await page.getByText(' checkbox 2').uncheck();
+        // await page.getByRole('checkbox',{checked:false}).check();
+        // await page.getByRole('checkbox',{checked:true}).nth(1).uncheck();
+        await page.getByRole('checkbox',{checked:false}).check();
+        await page.getByRole('checkbox',{checked:true}).nth(1).uncheck();
 })
 
 test('File Upload test',async({page})=>{
@@ -190,10 +208,41 @@ test('Working with Base Auth window',async({browser})=>{
   await expect(page.locator(".example p")).toContainText("Congratulations! You must have the proper credentials.")
 })
 
-test.only('Drag and Drop',async({page})=>{
+test('Drag and Drop',async({page})=>{
   const homePage = new Homepage(page);
   await homePage.gotoUrl();
   await homePage.clickOnElement("[href='/drag_and_drop']");
   await page.locator("#column-a").dragTo(page.locator("#column-b"));
-  
+
+})
+
+
+test("getByPlaceHolder test",async({page})=>{
+  await page.goto("https://selectorshub.com/xpath-practice-page/");
+  await page.getByTitle("Enter your first crush name").fill('abc@abc.com');
+  await page.getByPlaceholder('Enter your mobile number').nth(0).fill('9898989898');
+  await page.getByText('Submit').click();
+  await page.getByTestId()
+  //await page.getByAltText('Fork me on GitHub').click()
+})
+/// asynchronous --- we dont wait for the operation to get complete
+/// synchronous
+test('Working with wait for time out',async({page})=>{
+  const homePage = new Homepage(page);
+  await homePage.gotoUrl();
+  await page.getByText('Checkboxes').click();
+  await page.waitForURL('**/checkboxes')
+  await page.waitForTimeout(3000);
+  await page.waitForLoadState('domcontentloaded');
+  // const locator = page.locator(".heading");
+  // await locator.waitFor({state:'visible'})
+  // await expect(page.locator(".heading")).toHaveText('Welcome to the-internet');
+})
+
+
+test.only("Work with toHaveTitle",async({page})=>{
+   await page.goto("https://playwright.dev/");
+   await page.locator('.getStarted_Sjon').click();
+   await expect(page).toHaveTitle(/Installation/);
+   await expect(page).toHaveURL(/intro/);
 })
