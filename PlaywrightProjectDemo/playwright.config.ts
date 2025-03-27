@@ -13,18 +13,18 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   
-  //timeout:3000,
-  testDir: './tests',
+  timeout:30000, // What is trashold time (Max time a test can take for execution);
+  testDir: './TestDir',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  forbidOnly:false,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries:3,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html',{outputFolder:"./output"}],['junit',{outputFile:"./output/junit.xml"}],['json',{outputFile:'./output/result.json'}]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
