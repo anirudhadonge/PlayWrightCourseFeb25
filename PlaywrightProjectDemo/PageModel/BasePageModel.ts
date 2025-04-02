@@ -1,4 +1,4 @@
-import { BrowserContext, expect, Page } from "@playwright/test";
+import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 
 
 
@@ -58,5 +58,9 @@ export class BasePageModel{
     async clickOnElement(locator:string){
       console.log("Element is getting click");
       await this.page.locator(locator).click();
+    }
+
+    async getElement(element:string):Promise<Locator>{
+      return this.page.locator(element);
     }
 }

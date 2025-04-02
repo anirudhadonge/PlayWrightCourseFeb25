@@ -20,21 +20,31 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly:false,
   /* Retry on CI only */
-  retries:3,
+  //retries:3,
   /* Opt out of parallel tests on CI. */
   //workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html',{outputFolder:"./output"}],['junit',{outputFile:"./output/junit.xml"}],['json',{outputFile:'./output/result.json'}]],
+  reporter: [['html',{outputFolder:"./output",open:'never'}],['junit',{outputFile:"./output/junit.xml"}],['json',{outputFile:'./output/result.json'}]
+,["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    //baseURL: 'https://the-internet.herokuapp.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     browserName:'chromium',
+    channel:'msedge',
+    viewport:null,
+    launchOptions:{
+      args:["-start-maximized"]
+    },
     headless:false,
     screenshot:'on',
+    // video:{
+    //   mode:'on',
+    //   size:{width:1920,height:1080}
+    // }
     // httpCredentials:{
     //   username:"admin",
     //   password:"admin"
