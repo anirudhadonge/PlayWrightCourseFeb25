@@ -10,7 +10,7 @@ export class BasePageModel{
     }
 
     async gotoUrl(){
-      await this.page.goto("https://the-internet.herokuapp.com/");
+      await this.page.goto(process.env.URL);
     }
 
     async handleAlert(locator:string, message:string='',flag:boolean=true){
