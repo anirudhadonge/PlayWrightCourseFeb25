@@ -70,11 +70,11 @@ test("Fixture example", async ({homePage,loginPage,securePage}) => {
     })
 
     await test.step("Validate selected Options",async()=>{
-      await dropDownPage.validateSelectedText("Option 2");
+      await dropDownPage.validateSelectedText("Option 1");
     })
   });
 
-  test.only("Select Options test without fixture", async ({page}) => {
+  test("Select Options test without fixture", async ({page}) => {
     let homePage = new Homepage(page);
     let dropDownPage = new DropDownPage(page);
     await test.step("Click on drop down link",async()=>{
@@ -87,6 +87,6 @@ test("Fixture example", async ({homePage,loginPage,securePage}) => {
     })
 
     await test.step("Validate selected Options",async()=>{
-      await dropDownPage.validateSelectedText("Option 2");
+      await dropDownPage.validateSelectedText("Option 1");
     })
   });
