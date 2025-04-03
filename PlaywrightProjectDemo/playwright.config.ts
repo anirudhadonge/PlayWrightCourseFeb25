@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv'
 
 /**
  * Read environment variables from file.
@@ -7,12 +8,15 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
-
+    dotenv.config({
+        path:"./.env",
+        override:true
+    })
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  
+  //globalSetup:'./GlobalSetup/GlobalSetup.ts',
   timeout:30000, // What is trashold time (Max time a test can take for execution);
   testDir: './TestDir',
   /* Run tests in files in parallel */
@@ -34,7 +38,6 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
     browserName:'chromium',
-    channel:'msedge',
     viewport:null,
     launchOptions:{
       args:["-start-maximized"]

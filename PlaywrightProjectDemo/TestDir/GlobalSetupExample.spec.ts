@@ -4,32 +4,6 @@ import { Homepage } from "../PageModel/HomePage.ts";
 import { LoginPage } from "../PageModel/LoginPage.ts";
 import { DropDownPage } from "../PageModel/DropDownPage.ts";
 
-
-/**
- * test{
- *  Browser
- *  Brower Context
- *  Page
- *  BrowserName
- *  APIRequestContext
- * }
- * we can add new functionality or feature to Test object.
- */
-/***
- *
- * end point
- * Header
- * body
- * request object
- * get, post , delete, put
- * response
- * response description --- validation
- * response status/code -- validation 200, 401, 404
- * response body --- > extracting the data and process
- *
- */
-//Browser ---> Browser Context ---> Page (default Fixtures/Objects)
-
 test("Fixture example", async ({homePage,loginPage,securePage}) => {
   //    const context = await browser.newContext();
   //const page = await context.newPage()

@@ -9,6 +9,11 @@
   "description": "",
   "dependencies": {
     "@playwright/test": "^1.51.0",
-    "mssql": "^11.0.1"
+    "dotenv": "^16.4.7",
+    "mssql": "^11.0.1",
+    "playwrightprojectdemo": "file:"
+  },
+  "devDependencies": {
+    "allure-playwright": "^3.2.1"
   }
 }
