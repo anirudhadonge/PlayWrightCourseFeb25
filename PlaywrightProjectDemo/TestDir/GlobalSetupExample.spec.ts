@@ -3,25 +3,19 @@ import {test} from '../Fixtures/PreRequisites.ts'
 import { Homepage } from "../PageModel/HomePage.ts";
 import { LoginPage } from "../PageModel/LoginPage.ts";
 import { DropDownPage } from "../PageModel/DropDownPage.ts";
-
+import data from './../Data/UserCredentail.json'
 test("Fixture example", async ({homePage,loginPage,securePage}) => {
-  //    const context = await browser.newContext();
-  //const page = await context.newPage()
-  const userName = "tomsmith";
-  const password = "SuperSecretPassword!";
-
-  // let homePage: Homepage = new Homepage(page);
-  // let loginPage:LoginPage = new LoginPage(page);
+ console.log(data);
   await test.step("Navigate to Login page", async () => {
     await homePage.clickOnFormAuthentication();
   });
 
   await test.step("Enter UserName", async () => {
-    await loginPage.enterUserName(userName);
+    await loginPage.enterUserName(data.userName);
   });
 
   await test.step("Enter Password", async () => {
-    await loginPage.enterPassword(password);
+    await loginPage.enterPassword(data.password);
   });
 
   await test.step("Click on Login", async () => {
