@@ -4,7 +4,7 @@ import { Homepage } from "../PageModel/HomePage.ts";
 import { LoginPage } from "../PageModel/LoginPage.ts";
 import { DropDownPage } from "../PageModel/DropDownPage.ts";
 import data from './../Data/UserCredentail.json'
-test("Fixture example", async ({homePage,loginPage,securePage}) => {
+test("@SP-2345 Fixture example", async ({homePage,loginPage,securePage}) => {
  console.log(data);
   await test.step("Navigate to Login page", async () => {
     await homePage.clickOnFormAuthentication();
